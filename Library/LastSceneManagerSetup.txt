@@ -1,0 +1,4 @@
+sceneSetups:
+- path: Assets/random-game-01.unity
+  isLoaded: 1
+  isActive: 1
