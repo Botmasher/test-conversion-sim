@@ -15,8 +15,9 @@ public class Player : MonoBehaviour {
 			Physics.Raycast (Camera.main.ScreenPointToRay(Input.mousePosition), out hit);
 			if (hit.collider != null && hit.collider.gameObject.tag == "Space") {
 				hit.collider.gameObject.GetComponent<GridSpace> ().SetOwner (index, color);
-				this.GetComponentInParent<PlayerManager> ().EndTurn (index);
 			}
 		}
+		// End turn
+		if (Input.GetKeyDown (KeyCode.Return)) this.GetComponentInParent<PlayerManager> ().EndTurn (index);
 	}
 }

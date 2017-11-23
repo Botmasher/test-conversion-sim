@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour {
 
@@ -8,6 +9,8 @@ public class PlayerManager : MonoBehaviour {
 
 	public List<Color> playerColors = new List<Color> ();
 	public Transform player;
+	public Text playersText;
+
 	List<Player> players = new List<Player> ();
 	RaycastHit hit;
 
@@ -21,13 +24,16 @@ public class PlayerManager : MonoBehaviour {
 			players.Add (newPlayer);
 		}
 		players [0].enabled = true;
+
+		playersText.text = string.Format ("player: {0}\nRETURN to end turn", playerTurn);
 	}
 
 	public void EndTurn (int cycle) {
 		playerTurn = cycle >= playerColors.Count-1 ? 0 : cycle+1;
-		Debug.Log (playerTurn);
 		players [cycle].enabled = false;
 		players [playerTurn].enabled = true;
+
+		playersText.text = string.Format ("player: {0}\nRETURN to end turn", playerTurn);
 	}
 	public void SetPlayers (List<Color> newPlayersList) {
 		playerColors = newPlayersList;
