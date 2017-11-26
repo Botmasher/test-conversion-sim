@@ -10,6 +10,7 @@ public class PlayerManager : MonoBehaviour {
 	public List<Color> playerColors = new List<Color> ();
 	public Transform player;
 	public Text playersText;
+	public GameObject builtsMenu;
 
 	List<Player> players = new List<Player> ();
 	RaycastHit hit;
@@ -21,6 +22,7 @@ public class PlayerManager : MonoBehaviour {
 			newPlayer.id = x;
 			newPlayer.color = playerColors[x];
 			newPlayer.enabled = false;
+			newPlayer.builtsMenu = builtsMenu;
 			players.Add (newPlayer);
 		}
 		players [0].enabled = true;

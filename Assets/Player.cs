@@ -9,12 +9,13 @@ public class Player : MonoBehaviour {
 	public Color color;
 
 	public int resourceX = 10;
-	public Text builtsMenu;
 
 	RaycastHit hit;
+	public GameObject builtsMenu;
+	bool browsingBuilts;
 
 	void Start () {
-		builtsMenu.enabled = false;
+		builtsMenu.SetActive (false);
 	}
 
 	void Update () {
@@ -33,17 +34,32 @@ public class Player : MonoBehaviour {
 			//}
 		}
 		// End turn
-		if (Input.GetKeyDown (KeyCode.Return)) this.GetComponentInParent<PlayerManager> ().EndTurn (id);
+		if (Input.GetKeyDown (KeyCode.Return)) {
+			EndTurn ();
+		}
 	}
 
 	void SelectSpace (GridSpace space) {
 		// purchase space
-		if (space.CheckOwner() != id && space.price <= resourceX) {
+		if (space.CheckOwner () != id && space.price <= resourceX) {
 			space.SetOwner (id, color);
 			resourceX -= space.price;
-		// pop builts menu if already own space
-		} else if (space.CheckOwner() == id) {
-			builtsMenu.enabled = true;
+			// pop builts menu if already own space
+		} else if (space.CheckOwner () == id && !builtsMenu.activeSelf) {
+			LoadBuiltsMenu ();
 		}
+	}
+
+	void EndTurn () {
+		CloseBuiltsMenu ();
+		this.GetComponentInParent<PlayerManager> ().EndTurn (id);
+	}
+
+	void LoadBuiltsMenu () {
+		builtsMenu.SetActive (true);
+	}
+
+	void CloseBuiltsMenu () {
+		builtsMenu.SetActive (false);
 	}
 }

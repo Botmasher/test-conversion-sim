@@ -23,6 +23,7 @@ public class GridSpace : MonoBehaviour {
 	}
 
 	public void AddBuilt (string index) {
+		Debug.Log (string.Format("Adding Built id#{0}", index));
 		builts.Add (index);
 	}
 
