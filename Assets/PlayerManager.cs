@@ -18,7 +18,7 @@ public class PlayerManager : MonoBehaviour {
 		for (int x=0; x < playerColors.Count; x++) {
 			Player newPlayer = Instantiate (player).GetComponent<Player> ();
 			newPlayer.transform.SetParent (this.transform);
-			newPlayer.index = x;
+			newPlayer.id = x;
 			newPlayer.color = playerColors[x];
 			newPlayer.enabled = false;
 			players.Add (newPlayer);
